@@ -100,7 +100,7 @@ def exibir_lista(produtos):
 
     for produto in produtos:
         produto.exibir()
-        print("-" * 60)
+        print("─" * 60)
 
 
 def main():
@@ -204,13 +204,26 @@ def main():
                 quantidade
             )
 
-            if sucesso:
+            resultado = registrar_venda(
+                produtos,
+                codigo,
+                quantidade
+            )
+
+            if resultado == "sucesso":
                 print("\n✓ Venda registrada com sucesso.")
+
+            elif resultado == "estoque_insuficiente":
+                print("\n✗ Estoque insuficiente.")
+
             else:
-                print("\n✗ Venda não realizada.")
+                print("\n✗ Produto não encontrado.")
 
         elif opcao == "7":
             cabecalho("ESTOQUE GERAL")
+
+            print(f"Total de produtos cadastrados: {len(produtos)}")
+            print()
 
             exibir_lista(listar_produtos(produtos))
 

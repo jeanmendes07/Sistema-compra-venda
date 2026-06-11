@@ -87,14 +87,14 @@ def registrar_venda(produtos, codigo, quantidade_vendida):
     produto = buscar_por_codigo(produtos, codigo)
 
     if produto is None:
-        return False
+        return "nao_encontrado"
 
     if quantidade_vendida > produto.quantidade:
-        return False
+        return "estoque_insuficiente"
 
     produto.quantidade -= quantidade_vendida
 
-    return True
+    return "sucesso"
 
 def listar_produtos(produtos):
     return produtos
