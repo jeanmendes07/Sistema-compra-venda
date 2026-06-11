@@ -63,3 +63,13 @@ def editar_produto(produtos, codigo, nome, categoria, preco, quantidade):
     produto.quantidade = quantidade
 
     return True
+
+def remover_produto(produtos, codigo):
+    produto = buscar_por_codigo(produtos, codigo)
+
+    if produto is None:
+        return False
+
+    produtos.remove(produto)
+
+    return True

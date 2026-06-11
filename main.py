@@ -1,4 +1,7 @@
-from estoque import cadastrar_produto, editar_produto, buscar_por_codigo
+from estoque import (
+    cadastrar_produto,
+    remover_produto
+)
 
 
 def main():
@@ -13,24 +16,35 @@ def main():
         15
     )
 
-    sucesso = editar_produto(
+    cadastrar_produto(
         produtos,
-        1001,
-        "Mouse Gamer RGB",
+        1002,
+        "Teclado Mecânico",
         "Periféricos",
-        109.90,
-        20
+        150.00,
+        8
     )
 
+    cadastrar_produto(
+        produtos,
+        1003,
+        "Headset",
+        "Periféricos",
+        199.90,
+        5
+    )
+
+    sucesso = remover_produto(produtos, 1002)
+
     if sucesso:
-        print("Produto editado com sucesso.")
+        print("Produto removido com sucesso.")
     else:
         print("Produto não encontrado.")
 
-    produto = buscar_por_codigo(produtos, 1001)
+    print("\nProdutos restantes:")
 
-    if produto:
-        produto.exibir()
+    for produto in produtos:
+        print(produto.codigo)
 
 
 if __name__ == "__main__":
