@@ -5,5 +5,12 @@
         "categoria": "Periféricos",
         "preco": 89.9,
         "quantidade": 15
+    },
+    {
+        "codigo": 1002,
+        "nome": "Teste Prod",
+        "categoria": "Teste",
+        "preco": 20.0,
+        "quantidade": 10
     }
 ]
