@@ -73,3 +73,12 @@ def remover_produto(produtos, codigo):
     produtos.remove(produto)
 
     return True
+
+def buscar_por_nome(produtos, nome):
+    encontrados = []
+
+    for produto in produtos:
+        if nome.lower() in produto.nome.lower():
+            encontrados.append(produto)
+
+    return encontrados
