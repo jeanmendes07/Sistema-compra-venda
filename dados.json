@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "codigo": 1001,
+        "nome": "Mouse Gamer",
+        "categoria": "Periféricos",
+        "preco": 89.9,
+        "quantidade": 15
+    }
+]

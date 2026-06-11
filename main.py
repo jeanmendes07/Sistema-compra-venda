@@ -1,58 +1,29 @@
-from estoque import (
-    cadastrar_produto,
-    listar_produtos,
-    listar_por_categoria,
-    estoque_baixo
-)
+from estoque import cadastrar_produto
+from arquivos import salvar_produtos, carregar_produtos
 
 
 def main():
-    produtos = []
+    produtos = carregar_produtos()
 
-    cadastrar_produto(
-        produtos,
-        1001,
-        "Mouse Gamer",
-        "Periféricos",
-        89.90,
-        15
-    )
+    if len(produtos) == 0:
+        cadastrar_produto(
+            produtos,
+            1001,
+            "Mouse Gamer",
+            "Periféricos",
+            89.90,
+            15
+        )
 
-    cadastrar_produto(
-        produtos,
-        1002,
-        "Teclado Mecânico",
-        "Periféricos",
-        150.00,
-        3
-    )
+        salvar_produtos(produtos)
 
-    cadastrar_produto(
-        produtos,
-        1003,
-        "Monitor",
-        "Monitores",
-        899.90,
-        2
-    )
+        print("Produto salvo no JSON.")
 
-    print("=== TODOS OS PRODUTOS ===\n")
+    else:
+        print("Produtos carregados:")
 
-    for produto in listar_produtos(produtos):
-        produto.exibir()
-        print()
-
-    print("=== PERIFÉRICOS ===\n")
-
-    for produto in listar_por_categoria(produtos, "Periféricos"):
-        produto.exibir()
-        print()
-
-    print("=== ESTOQUE BAIXO (< 5) ===\n")
-
-    for produto in estoque_baixo(produtos, 5):
-        produto.exibir()
-        print()
+        for produto in produtos:
+            produto.exibir()
 
 
 if __name__ == "__main__":

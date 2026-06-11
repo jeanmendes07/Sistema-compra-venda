@@ -12,3 +12,12 @@ class Produto:
         print(f"Categoria: {self.categoria}")
         print(f"Preço: R$ {self.preco:.2f}")
         print(f"Quantidade: {self.quantidade}")
+
+    def para_dicionario(self):
+        return {
+            "codigo": self.codigo,
+            "nome": self.nome,
+            "categoria": self.categoria,
+            "preco": self.preco,
+            "quantidade": self.quantidade
+        }
