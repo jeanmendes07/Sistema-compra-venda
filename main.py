@@ -1,8 +1,11 @@
-from produto import Produto
+from estoque import cadastrar_produto
 
 
 def main():
-    produto = Produto(
+    produtos = []
+
+    resultado = cadastrar_produto(
+        produtos,
         1001,
         "Mouse Gamer",
         "Periféricos",
@@ -10,7 +13,24 @@ def main():
         15
     )
 
-    produto.exibir()
+    if resultado:
+        print("Produto cadastrado com sucesso.")
+    else:
+        print("Produto já existe.")
+
+    resultado = cadastrar_produto(
+        produtos,
+        1001,
+        "Teclado",
+        "Periféricos",
+        120.00,
+        10
+    )
+
+    if resultado:
+        print("Produto cadastrado com sucesso.")
+    else:
+        print("Produto já existe.")
 
 
 if __name__ == "__main__":
