@@ -1,10 +1,10 @@
-from estoque import cadastrar_produto
+from estoque import cadastrar_produto, buscar_por_codigo
 
 
 def main():
     produtos = []
 
-    resultado = cadastrar_produto(
+    cadastrar_produto(
         produtos,
         1001,
         "Mouse Gamer",
@@ -13,24 +13,30 @@ def main():
         15
     )
 
-    if resultado:
-        print("Produto cadastrado com sucesso.")
-    else:
-        print("Produto já existe.")
-
-    resultado = cadastrar_produto(
+    cadastrar_produto(
         produtos,
-        1001,
-        "Teclado",
+        1002,
+        "Teclado Mecânico",
         "Periféricos",
-        120.00,
-        10
+        150.00,
+        8
     )
 
-    if resultado:
-        print("Produto cadastrado com sucesso.")
+    cadastrar_produto(
+        produtos,
+        1003,
+        "Headset",
+        "Periféricos",
+        199.90,
+        5
+    )
+
+    produto = buscar_por_codigo(produtos, 1002)
+
+    if produto:
+        produto.exibir()
     else:
-        print("Produto já existe.")
+        print("Produto não encontrado.")
 
 
 if __name__ == "__main__":
