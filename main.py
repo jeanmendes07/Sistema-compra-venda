@@ -1,7 +1,8 @@
 from estoque import (
     cadastrar_produto,
-    registrar_venda,
-    buscar_por_codigo
+    listar_produtos,
+    listar_por_categoria,
+    estoque_baixo
 )
 
 
@@ -17,21 +18,41 @@ def main():
         15
     )
 
-    sucesso = registrar_venda(
+    cadastrar_produto(
         produtos,
-        1001,
+        1002,
+        "Teclado Mecânico",
+        "Periféricos",
+        150.00,
         3
     )
 
-    if sucesso:
-        print("Venda registrada com sucesso.")
-    else:
-        print("Não foi possível registrar a venda.")
+    cadastrar_produto(
+        produtos,
+        1003,
+        "Monitor",
+        "Monitores",
+        899.90,
+        2
+    )
 
-    produto = buscar_por_codigo(produtos, 1001)
+    print("=== TODOS OS PRODUTOS ===\n")
 
-    if produto:
-        print(f"Estoque restante: {produto.quantidade}")
+    for produto in listar_produtos(produtos):
+        produto.exibir()
+        print()
+
+    print("=== PERIFÉRICOS ===\n")
+
+    for produto in listar_por_categoria(produtos, "Periféricos"):
+        produto.exibir()
+        print()
+
+    print("=== ESTOQUE BAIXO (< 5) ===\n")
+
+    for produto in estoque_baixo(produtos, 5):
+        produto.exibir()
+        print()
 
 
 if __name__ == "__main__":

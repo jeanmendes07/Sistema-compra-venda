@@ -95,3 +95,26 @@ def registrar_venda(produtos, codigo, quantidade_vendida):
     produto.quantidade -= quantidade_vendida
 
     return True
+
+def listar_produtos(produtos):
+    return produtos
+
+
+def listar_por_categoria(produtos, categoria):
+    encontrados = []
+
+    for produto in produtos:
+        if produto.categoria.lower() == categoria.lower():
+            encontrados.append(produto)
+
+    return encontrados
+
+
+def estoque_baixo(produtos, limite):
+    encontrados = []
+
+    for produto in produtos:
+        if produto.quantidade < limite:
+            encontrados.append(produto)
+
+    return encontrados
