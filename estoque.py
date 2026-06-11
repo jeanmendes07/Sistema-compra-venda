@@ -50,3 +50,16 @@ def buscar_por_codigo(produtos, codigo):
             fim = meio - 1
 
     return None
+
+def editar_produto(produtos, codigo, nome, categoria, preco, quantidade):
+    produto = buscar_por_codigo(produtos, codigo)
+
+    if produto is None:
+        return False
+
+    produto.nome = nome
+    produto.categoria = categoria
+    produto.preco = preco
+    produto.quantidade = quantidade
+
+    return True
