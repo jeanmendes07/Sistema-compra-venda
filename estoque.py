@@ -21,7 +21,15 @@ def cadastrar_produto(produtos, codigo, nome, categoria, preco, quantidade):
         quantidade
     )
 
-    produtos.append(novo_produto)
+    posicao = 0
+
+    while (
+        posicao < len(produtos)
+        and produtos[posicao].codigo < codigo
+    ):
+        posicao += 1
+
+    produtos.insert(posicao, novo_produto)
 
     return True
 

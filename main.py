@@ -1,8 +1,17 @@
-from estoque import cadastrar_produto, buscar_por_codigo
+from estoque import cadastrar_produto
 
 
 def main():
     produtos = []
+
+    cadastrar_produto(
+        produtos,
+        1003,
+        "Headset",
+        "Periféricos",
+        199.90,
+        5
+    )
 
     cadastrar_produto(
         produtos,
@@ -22,21 +31,8 @@ def main():
         8
     )
 
-    cadastrar_produto(
-        produtos,
-        1003,
-        "Headset",
-        "Periféricos",
-        199.90,
-        5
-    )
-
-    produto = buscar_por_codigo(produtos, 1002)
-
-    if produto:
-        produto.exibir()
-    else:
-        print("Produto não encontrado.")
+    for produto in produtos:
+        print(produto.codigo)
 
 
 if __name__ == "__main__":
