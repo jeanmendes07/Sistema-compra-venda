@@ -12,6 +12,51 @@ from estoque import (
 
 from arquivos import salvar_produtos, carregar_produtos
 
+def ler_int(mensagem):
+    while True:
+        try:
+            return int(input(mensagem))
+        except ValueError:
+            print("✗ Digite um número inteiro válido.")
+
+
+def ler_float(mensagem):
+    while True:
+        try:
+            return float(input(mensagem))
+        except ValueError:
+            print("✗ Digite um valor numérico válido.")
+
+
+def ler_texto(mensagem):
+    while True:
+        texto = input(mensagem).strip()
+
+        if texto:
+            return texto
+
+        print("✗ Este campo não pode ficar vazio.")
+
+
+def ler_preco(mensagem):
+    while True:
+        preco = ler_float(mensagem)
+
+        if preco > 0:
+            return preco
+
+        print("✗ O preço deve ser maior que zero.")
+
+
+def ler_quantidade(mensagem):
+    while True:
+        quantidade = ler_int(mensagem)
+
+        if quantidade >= 0:
+            return quantidade
+
+        print("✗ A quantidade não pode ser negativa.")
+
 
 def cabecalho(titulo):
     print("\n" + "=" * 60)
@@ -69,11 +114,11 @@ def main():
         if opcao == "1":
             cabecalho("CADASTRAR PRODUTO")
 
-            codigo = int(input("Código: "))
-            nome = input("Nome: ")
-            categoria = input("Categoria: ")
-            preco = float(input("Preço: "))
-            quantidade = int(input("Quantidade: "))
+            codigo = ler_int("Código: ")
+            nome = ler_texto("Nome: ")
+            categoria = ler_texto("Categoria: ")
+            preco = ler_preco("Preço: ")
+            quantidade = ler_quantidade("Quantidade: ")
 
             sucesso = cadastrar_produto(
                 produtos,
@@ -92,12 +137,12 @@ def main():
         elif opcao == "2":
             cabecalho("EDITAR PRODUTO")
 
-            codigo = int(input("Código do produto: "))
+            codigo = ler_int("Código do produto: ")
 
-            nome = input("Novo nome: ")
-            categoria = input("Nova categoria: ")
-            preco = float(input("Novo preço: "))
-            quantidade = int(input("Nova quantidade: "))
+            nome = ler_texto("Novo nome: ")
+            categoria = ler_texto("Nova categoria: ")
+            preco = ler_preco("Novo preço: ")
+            quantidade = ler_quantidade("Nova quantidade: ")
 
             sucesso = editar_produto(
                 produtos,
@@ -116,7 +161,7 @@ def main():
         elif opcao == "3":
             cabecalho("REMOVER PRODUTO")
 
-            codigo = int(input("Código do produto: "))
+            codigo = ler_int("Código do produto: ")
 
             sucesso = remover_produto(produtos, codigo)
 
@@ -128,7 +173,7 @@ def main():
         elif opcao == "4":
             cabecalho("BUSCAR POR CÓDIGO")
 
-            codigo = int(input("Código: "))
+            codigo = ler_int("Código: ")
 
             produto = buscar_por_codigo(produtos, codigo)
 
@@ -141,7 +186,7 @@ def main():
         elif opcao == "5":
             cabecalho("BUSCAR POR NOME")
 
-            nome = input("Nome: ")
+            nome = ler_texto("Nome: ")
 
             encontrados = buscar_por_nome(produtos, nome)
 
@@ -150,8 +195,8 @@ def main():
         elif opcao == "6":
             cabecalho("REGISTRAR VENDA")
 
-            codigo = int(input("Código do produto: "))
-            quantidade = int(input("Quantidade vendida: "))
+            codigo = ler_int("Código do produto: ")
+            quantidade = ler_quantidade("Quantidade vendida: ")
 
             sucesso = registrar_venda(
                 produtos,
@@ -172,7 +217,7 @@ def main():
         elif opcao == "8":
             cabecalho("PRODUTOS POR CATEGORIA")
 
-            categoria = input("Categoria: ")
+            categoria = ler_texto("Categoria: ")
 
             encontrados = listar_por_categoria(
                 produtos,
@@ -184,7 +229,7 @@ def main():
         elif opcao == "9":
             cabecalho("ESTOQUE BAIXO")
 
-            limite = int(input("Limite de estoque: "))
+            limite = ler_quantidade("Limite de estoque: ")
 
             encontrados = estoque_baixo(
                 produtos,
