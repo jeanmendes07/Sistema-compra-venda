@@ -1,6 +1,7 @@
 from estoque import (
     cadastrar_produto,
-    buscar_por_nome
+    registrar_venda,
+    buscar_por_codigo
 )
 
 
@@ -16,31 +17,21 @@ def main():
         15
     )
 
-    cadastrar_produto(
+    sucesso = registrar_venda(
         produtos,
-        1002,
-        "Mouse Sem Fio",
-        "Periféricos",
-        120.00,
-        10
+        1001,
+        3
     )
 
-    cadastrar_produto(
-        produtos,
-        1003,
-        "Teclado Mecânico",
-        "Periféricos",
-        150.00,
-        8
-    )
+    if sucesso:
+        print("Venda registrada com sucesso.")
+    else:
+        print("Não foi possível registrar a venda.")
 
-    resultados = buscar_por_nome(produtos, "mouse")
+    produto = buscar_por_codigo(produtos, 1001)
 
-    print(f"Encontrados: {len(resultados)}\n")
-
-    for produto in resultados:
-        produto.exibir()
-        print()
+    if produto:
+        print(f"Estoque restante: {produto.quantidade}")
 
 
 if __name__ == "__main__":

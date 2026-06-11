@@ -82,3 +82,16 @@ def buscar_por_nome(produtos, nome):
             encontrados.append(produto)
 
     return encontrados
+
+def registrar_venda(produtos, codigo, quantidade_vendida):
+    produto = buscar_por_codigo(produtos, codigo)
+
+    if produto is None:
+        return False
+
+    if quantidade_vendida > produto.quantidade:
+        return False
+
+    produto.quantidade -= quantidade_vendida
+
+    return True
